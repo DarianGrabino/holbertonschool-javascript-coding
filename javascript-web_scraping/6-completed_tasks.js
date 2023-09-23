@@ -3,7 +3,6 @@
 const request = require('request');
 const dict = {};
 
-
 request(process.argv[2], (error, response, data) => {
   if (error) {
     console.error(error);
