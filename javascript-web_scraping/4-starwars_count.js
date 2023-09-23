@@ -1,7 +1,7 @@
 #!/usr/bin/node
 
 const request = require('request');
-const apiUrl = 'https://swapi-api.hbtn.io/api/films/';
+const apiUrl = process.argv[2];
 const characterId = '18';
 
 request(apiUrl, (error, response, data) => {
@@ -9,9 +9,9 @@ request(apiUrl, (error, response, data) => {
     console.error(error);
   } else {
     const filmsData = JSON.parse(data);
-    const character_is_present = filmsData.results.filter(film =>
-      film.characters.includes(`https://swapi-api.hbtn.io/api/people/${characterId}/`)
+    const characterIsPresent = filmsData.results.filter(film =>
+      film.characters.some(characterUrl => characterUrl.includes(`/${characterId}/`))
     );
-    console.log(`${character_is_present.length}`);
+    console.log(`${characterIsPresent.length}`);
   }
 });
