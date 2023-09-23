@@ -3,6 +3,10 @@
 const request = require('request');
 const dict = {};
 
+for (let userId = 1; userId <= 10; userId++) {
+  dict[userId] = 0;
+}
+
 request(process.argv[2], (error, response, data) => {
   if (error) {
     console.error(error);
